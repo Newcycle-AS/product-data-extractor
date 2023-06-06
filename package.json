@@ -1,0 +1,22 @@
+{
+  "name": "product-data-user-script",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "serve": "http-server -c-1 ./dist",
+    "build": "export type=prerelease && pnpm apply-version",
+    "release:patch": "type=patch pnpm apply-version",
+    "release:minor": "type=minor pnpm apply-version",
+    "release:major": "type=major pnpm apply-version",
+    "apply-version": "pnpm version \"$type\" && browserify dependencies.js -o dist/bundle.js && cp product-data.user.js dist/ && sed -i \"s/{{version}}/$(pnpm pkg get version | tr -d '\"')/g\" dist/product-data.user.js"
+  },
+  "dependencies": {
+    "@rane/web-auto-extractor": "^2.0.7"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "http-server": "^14.1.1",
+    "schema-dts": "^1.1.2"
+  }
+}
