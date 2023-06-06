@@ -3,7 +3,7 @@
 ## Installation
 
 1. Install a userscript manager. Violentmonkey is recommended. https://violentmonkey.github.io/
-2. Go to [dist/product-data.user.js](dist/product-data.user.js) and click on install.
+2. Go to [dist/product-data.user.js](dist/product-data.user.js?raw=true) and click on install.
 
 ## Usage
 
