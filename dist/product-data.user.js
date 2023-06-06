@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name product-data-extractor
 // @run-at document-idle
-// @version 0.1.5-44
+// @version 0.1.0
 // @require ./bundle.js
 // ==/UserScript==
 
-console.log("product-data-extractor@0.1.5-44 loaded");
+console.log('product-data-extractor@0.1.0 loaded');
 
 let data;
 try {
@@ -15,11 +15,9 @@ try {
   return;
 }
 
-const productData = (data?.jsonld?.Product ||
-  data?.microdata?.Product ||
-  data?.rdfa?.Product)[0];
+const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)[0];
 if (!productData) {
-  console.log("product-data-extractor: No product data found.");
+  console.log('product-data-extractor: no product data found');
   return;
 }
 
@@ -83,11 +81,11 @@ function injectButton(data) {
     }
   `);
 
-  const button = document.createElement("Button");
-  button.classList.add("pde-button");
-  button.innerHTML = "📋";
-  button.title = "Copy Product Data";
-  button.addEventListener("click", () => {
+  const button = document.createElement('Button');
+  button.classList.add('pde-button');
+  button.innerHTML = '📋';
+  button.title = 'Copy Product Data';
+  button.addEventListener('click', () => {
     navigator.clipboard.writeText(JSON.stringify(data));
   });
   document.body.appendChild(button);
