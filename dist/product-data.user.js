@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name product-data-extractor
 // @run-at document-idle
-// @version 0.1.0
+// @version 0.1.1
 // @require ./bundle.js
 // ==/UserScript==
 
-console.log('product-data-extractor@0.1.0 loaded');
+console.log('product-data-extractor@0.1.1 loaded');
 
 let data;
 try {
@@ -15,7 +15,7 @@ try {
   return;
 }
 
-const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)[0];
+const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)?.[0];
 if (!productData) {
   console.log('product-data-extractor: no product data found');
   return;
