@@ -15,7 +15,7 @@ try {
   return;
 }
 
-const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)[0];
+const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)?.[0];
 if (!productData) {
   console.log('product-data-extractor: no product data found');
   return;
