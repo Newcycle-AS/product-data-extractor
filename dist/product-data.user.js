@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name product-data-extractor
 // @run-at document-idle
-// @version 0.1.1
+// @version 0.1.3
 // @require ./bundle.js
 // ==/UserScript==
 
-console.log('product-data-extractor@0.1.1 loaded');
+console.log('product-data-extractor@0.1.3 loaded');
 
 function main() {
   let data;
