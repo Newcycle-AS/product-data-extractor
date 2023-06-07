@@ -7,21 +7,35 @@
 
 console.log('product-data-extractor@0.1.1 loaded');
 
-let data;
-try {
-  data = window.WAE().parse(document.documentElement.outerHTML);
-} catch (error) {
-  console.error(data);
-  return;
+function main() {
+  let data;
+  try {
+    data = window.WAE().parse(document.documentElement.outerHTML);
+  } catch (error) {
+    console.error(data);
+    return false;
+  }
+
+  const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)?.[0];
+  if (!productData) {
+    console.log('product-data-extractor: no product data found');
+    return false;
+  }
+  injectButton(productData);
+  return true;
 }
 
-const productData = (data?.jsonld?.Product || data?.microdata?.Product || data?.rdfa?.Product)?.[0];
-if (!productData) {
-  console.log('product-data-extractor: no product data found');
-  return;
-}
+let tries = 0;
 
-injectButton(productData);
+while (tries++ < 3) {
+  let result = main();
+  if (result) {
+    break;
+  }
+
+  console.log('Nothing found, retrying in 1.5s.');
+  setTimeout(main, 1500);
+}
 
 function injectButton(data) {
   window.addStyle(`
